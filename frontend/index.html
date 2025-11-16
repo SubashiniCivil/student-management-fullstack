@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Management App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <h1>📚 Student Management System</h1>
+
+  <div class="container">
+    <form id="studentForm">
+      <h2 id="formTitle">Add New Student</h2>
+
+      <div class="form-row">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter name" required />
+      </div>
+
+      <div class="form-row">
+        <label for="age">Age:</label>
+        <input type="number" id="age" placeholder="Enter age" required />
+      </div>
+
+      <div class="form-row">
+        <label for="course">Course:</label>
+        <input type="text" id="course" placeholder="Enter course" required />
+      </div>
+
+      <div class="form-row button-row">
+        <button type="submit" id="submitBtn">Add Student</button>
+      </div>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Course</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="studentTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Toast Message Box -->
+  <div id="toastBox"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

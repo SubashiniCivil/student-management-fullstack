@@ -1,0 +1,174 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: #0d0d0d;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 20px;
+  color: #29b6f6;
+  font-weight: 700;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+  background: #1c1c1c;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+/* Horizontal Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-row label {
+  min-width: 70px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #333;
+  color: white;
+}
+
+.button-row {
+  justify-content: flex-end;
+}
+
+.button-row button {
+  padding: 12px 20px;
+  background: #29b6f6;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button-row button:hover {
+  background: #4fc3f7;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+}
+
+table th {
+  background: #263238;
+  padding: 12px;
+  color: #4fc3f7;
+  font-size: 16px;
+}
+
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.actions button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-edit {
+  background: #ffeb3b;
+  color: black;
+}
+
+.btn-edit:hover {
+  background: #ffee58;
+}
+
+.btn-delete {
+  background: #ff5252;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #ff1744;
+}
+
+/* Toast Styling */
+#toastBox {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
+
+.toast {
+  background: #111;
+  color: #fff;
+  min-width: 200px;
+  padding: 12px 20px;
+  margin-top: 10px;
+  border-left: 6px solid #29b6f6;
+  border-radius: 6px;
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+/*  Responsive Design for Mobile */
+@media (max-width: 700px) {
+
+  /* Stack form rows vertically */
+  .form-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-row label {
+    text-align: left;
+    margin-bottom: 5px;
+    min-width: 0;
+  }
+
+  .button-row {
+    justify-content: center; /* center button on small screens */
+  }
+
+  /* Table - make scrollable horizontally */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  table th, table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}

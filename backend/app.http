@@ -1,0 +1,16 @@
+### Get all students
+GET http://localhost:5000/students
+
+### Add a new student
+POST http://localhost:5000/students
+Content-Type: application/json
+
+{
+  "name": "Subashini",
+  "age": 23,
+  "grade": "A",
+  "course":"Full-Stack"
+}
+
+### Delete a student
+DELETE http://localhost:5000/students/1

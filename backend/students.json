@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "age": 20,
+      "course": "BSc"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "age": 22,
+      "course": "BCom"
+    },
+    {
+      "id": 1763265338525,
+      "name": "Subashini",
+      "age": 23,
+      "course": "Full-Stack"
+    }
+  ]
+}
