@@ -1,74 +1,72 @@
- const express = require("express");
+const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
+
+const connectDB = require("./db");  
+connectDB();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Temporary data store
-let students = [
-  { id: 1, name: "Anjali", age: 20, course: "Backend Developer" },
-  { id: 2, name: "Rahul", age: 22, course: "Frontend Developer" },
-  { id: 3, name: "Karthik", age: 19, course: "Data Science" }
-];
-
+const Student = require("./models/Student");
 
 // GET all students
-app.get("/students", (req, res) => {
-  res.json(students);
-});
-
-// POST add a student
-app.post("/students", (req, res) => {
-  const student = req.body;
-  student.id = Date.now(); // unique id
-  students.push(student);
-  res.json({ message: "Student added", student });
-});
-
-// DELETE a student
-app.delete("/students/:id", (req, res) => {
-  const id = Number(req.params.id);
-  students = students.filter((s) => s.id !== id);
-  res.json({ message: "Student deleted", id });
-});
-
-// GET a single student by ID
-app.get("/students/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const student = students.find((s) => s.id === id);
-
-  if (!student) {
-    return res.status(404).json({ message: "Student not found" });
+app.get("/students", async (req, res) => {
+  try {
+    const students = await Student.find();
+    res.json(students);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  res.json(student);
 });
 
-// UPDATE a student
-app.put("/students/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const { name, age, course } = req.body;
-
-  const studentIndex = students.findIndex((s) => s.id === id);
-
-  if (studentIndex === -1) {
-    return res.status(404).json({ message: "Student not found" });
+// POST add student
+app.post("/students", async (req, res) => {
+  try {
+    const student = await Student.create(req.body);
+    res.json({ message: "Student added", student });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  students[studentIndex] = {
-    id,
-    name,
-    age,
-    course
-  };
-
-  res.json({ message: "Student updated", student: students[studentIndex] });
 });
 
-
-// Start server
-app.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+// DELETE student
+app.delete("/students/:id", async (req, res) => {
+  try {
+    await Student.findByIdAndDelete(req.params.id);
+    res.json({ message: "Student deleted" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
+
+// GET single student
+app.get("/students/:id", async (req, res) => {
+  try {
+    const student = await Student.findById(req.params.id);
+    if (!student) return res.status(404).json({ message: "Not found" });
+    res.json(student);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// UPDATE student
+app.put("/students/:id", async (req, res) => {
+  try {
+    const student = await Student.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json({ message: "Student updated", student });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+
