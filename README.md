@@ -42,3 +42,4 @@ GET	/students/:id	Get specific student
 PUT	/students/:id	Update student
 DELETE	/students/:id	Delete student  
 
+Update 
